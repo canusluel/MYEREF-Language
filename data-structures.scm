@@ -19,8 +19,15 @@
       (proc proc?))
     (ref-val
       (ref reference?))
+     ; #####################################################
+     ; ###### ENTER YOUR CODE HERE
+     ; ###### add a new value type for your arrays
+     ; #####################################################
+    
     (arr-val
      (arr arrval?))
+
+     ; #####################################################
     )
 
 ;;; extractors:
