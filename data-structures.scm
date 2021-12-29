@@ -19,13 +19,8 @@
       (proc proc?))
     (ref-val
       (ref reference?))
-    ; #####################################################
-    ; ###### ENTER YOUR CODE HERE
-    ; ###### add a new value type for your arrays
-    ; #####################################################
-    
-
-    ; #####################################################
+    (arr-val
+     (arr arrval?))
     )
 
 ;;; extractors:
@@ -61,6 +56,12 @@
 
   ;; HINT if you need extractors, add them here
 
+  (define expval->arr
+    (lambda (v)
+      (cases expval v
+        (arr-val (arr) arr)
+        (else (expval-extractor-error 'arr v)))))
+
 ;;;;;;;;;;;;;;;; procedures ;;;;;;;;;;;;;;;;
 
   ; #####################################################
@@ -68,6 +69,9 @@
   ; ###### you might want to add a new datatype for arrays here similar 
   ; ###### to mutable pairs.
   ; #####################################################
+
+  (define-datatype arrval arrval?
+    (array-value (elements (list-of reference?))))
     
 
   ; #####################################################

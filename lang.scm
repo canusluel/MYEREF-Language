@@ -76,7 +76,21 @@
       ; ###### ENTER YOUR CODE HERE
       ; ###### define the grammar definitions for new expressions here
       ; #####################################################
-    
+      (expression
+       ("newarray" "(" expression "," expression ")")
+       new-arr-exp)
+
+      (expression
+       ("update-array" "(" expression "," expression "," expression ")")
+       update-arr-exp)
+      
+      (expression
+       ("read-array" "(" expression "," expression ")")
+       read-arr-exp)
+
+      (expression
+       ("print-array" "(" expression ")")
+       print-arr-exp)
 
       ; #####################################################
 

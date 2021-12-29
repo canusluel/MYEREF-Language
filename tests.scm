@@ -161,30 +161,30 @@ in begin
 
       ; ==================== Array test cases =========================
 
-;   (array-detailed-test-1 "let a = newarray(2, -99) in
-;                              let p = proc (x)
-;                                  let v = read-array(x, 1)
-;                                  in update-array(x, 1, -(v, -1))
-;                       in begin update-array(a, 1, 0); (p a); (p a); read-array(a, 1) end"
-;                      2)
+   (array-detailed-test-1 "let a = newarray(2, -99) in
+                              let p = proc (x)
+                                  let v = read-array(x, 1)
+                                  in update-array(x, 1, -(v, -1))
+                       in begin update-array(a, 1, 0); (p a); (p a); read-array(a, 1) end"
+                      2)
 
-;      (array-detailed-test-2 "let a = newarray(3, 5) in
-;                              let p = proc (x)
-;                                   let v = read-array(x, 1)
-;                                   in update-array(x, 1, -(-2, v))
-;                              in let q = proc(x)
-;                                  let v1 = read-array(x, 1) in 
-;                                  let v2 = read-array(x, 2)    
-;                                  in update-array(x, 1, -(v2, -(0, v1)))
-;                       in begin update-array(a, 1, -5); (p a); (q a); read-array(a, 1) end"
-;                      8)
+      (array-detailed-test-2 "let a = newarray(3, 5) in
+                              let p = proc (x)
+                                   let v = read-array(x, 1)
+                                   in update-array(x, 1, -(-2, v))
+                              in let q = proc(x)
+                                  let v1 = read-array(x, 1) in 
+                                  let v2 = read-array(x, 2)    
+                                  in update-array(x, 1, -(v2, -(0, v1)))
+                       in begin update-array(a, 1, -5); (p a); (q a); read-array(a, 1) end"
+                      8)
 
-;      (array-detailed-test-3 "let a = newarray(2, -99) in
-;                              let p = proc (x)
-;                                  let v = read-array(x, 1)
-;                                  in update-array(v, 1, -(read-array(v, 2), -(-1, read-array(v, 1))))
-;                       in begin update-array(a, 1, newarray(3,4)); (p a); (p a); (p a); read-array(read-array(a, 1), 1) end"
-;                      19)
+      (array-detailed-test-3 "let a = newarray(2, -99) in
+                              let p = proc (x)
+                                  let v = read-array(x, 1)
+                                  in update-array(v, 1, -(read-array(v, 2), -(-1, read-array(v, 1))))
+                       in begin update-array(a, 1, newarray(3,4)); (p a); (p a); (p a); read-array(read-array(a, 1), 1) end"
+                      19)
 ;      
 ;            ; ==================== Stack test cases =========================;
 ;
