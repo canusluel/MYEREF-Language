@@ -114,12 +114,67 @@
         ; ###### value-of cases for new expressions, remember
         ; ###### that you need to use memory functionalities. 
         ; #####################################################
+
+        (new-arr-exp (exp1 exp2)
+                     (let ((length (expval->num (value-of exp1 env)))
+                           (value (value-of exp2 env)))
+                       (arr-val (array-value (new-arr-helper length value)))))
+
+        (update-arr-exp (exp1 exp2 exp3)
+                        (let ((arr (expval->arr (value-of exp1 env)))
+                              (index (expval->num (value-of exp2 env)))
+                              (value (value-of exp3 env)))
+                          (update-arr-helper arr index value)))
+
+        (read-arr-exp (exp1 exp2)
+                     (let ((arr (expval->arr (value-of exp1 env)))
+                           (index (expval->num (value-of exp2 env))))
+                       (read-arr-helper arr index)))
+
+        (print-arr-exp (exp1)
+                      (let ((arr (expval->arr (value-of exp1 env))))
+                        (print-arr-helper arr)))
     
 
         ; #####################################################
         )))
 
   ; ###### YOU CAN WRITE HELPER FUNCTIONS HERE
+
+  ; Creates an array with the created references by returned newref call.
+  (define (new-arr-helper length value)
+    (if (= length 0)
+        (list)
+        (cons (newref value) (new-arr-helper (- length 1) value))))
+
+  ; Updates an array with the given index / value pair.
+  (define (update-arr-helper arr index value)
+    (cases arrval arr
+      (array-value (elements)
+                (setref! (list-ref elements index) value))))
+
+  ; Reads an element of the array in the given index.
+  (define (read-arr-helper arr index)
+    (cases arrval arr
+      (array-value (elements) (deref (list-ref elements index)))))
+
+  ; Prints all elements seperated by the space char.
+  ; P.S. We returned 23 as a return value, since it is specified on the lecture slides.
+  (define (print-arr-helper arr)
+    (cases arrval arr
+      (array-value (elements) (print-each-element elements))))
+
+  ; Prints the each element in the given list.
+  ; P. S. Since we are storing the list of references,
+  ; we are taking list as an input.
+  (define (print-each-element l)
+    (if (null? l)
+        ; Default value for ending, same as return 0 in the other programming languages.
+        (num-val 23)
+        (begin
+          (display (deref (car l)))
+          (display " ")
+          (print-each-element (cdr l)))))
   
   ;; apply-procedure : Proc * ExpVal -> ExpVal
   ;; 
