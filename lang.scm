@@ -94,6 +94,34 @@
 
       ; #####################################################
 
+      (expression
+       ("newstack" "(" ")")
+       newstack-exp)
+
+      (expression
+       ("stack-push" "(" expression "," expression ")")
+       stack-push-exp)
+
+      (expression
+       ("stack-pop" "(" expression ")")
+       stack-pop-exp)
+      
+      (expression
+       ("stack-size" "(" expression ")")
+       stack-size-exp)
+      
+      (expression
+       ("stack-top" "(" expression ")")
+       stack-top-exp)
+
+      (expression
+       ("empty-stack?" "(" expression ")")
+       empty-stack?-exp)
+
+      (expression
+       ("print-stack" "(" expression ")")
+       print-stack-exp)
+
       ))
 
   ;;;;;;;;;;;;;;;; sllgen boilerplate ;;;;;;;;;;;;;;;;
