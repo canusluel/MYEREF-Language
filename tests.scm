@@ -188,12 +188,12 @@ in begin
 ;      
 ;            ; ==================== Stack test cases =========================;
 ;
-;      (stack-test1 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-push(x,30); stack-size(x) end" 3)
-;      (stack-test2 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-pop(x); stack-pop(x); stack-push(x, 30); stack-top(x) end" 30)
-;      (stack-test3 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-push(x,30); stack-pop(x); stack-pop(x); stack-pop(x); empty-stack?(x) end" #t)
-;      (stack-test4 "let x = newstack() in begin stack-push(x, 10); stack-pop(x); stack-push(x, 20); stack-push(x, 30); stack-pop(x); stack-top(x) end" 20)
-;      (stack-test5 "let x = newstack() in begin stack-push(x, 10); stack-pop(x); stack-push(x, 20); stack-push(x, 30); stack-pop(x); stack-top(x); stack-push(x, 30); stack-size(x) end" 2)
-;
+      (stack-test1 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-push(x,30); stack-size(x) end" 3)
+      (stack-test2 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-pop(x); stack-pop(x); stack-push(x, 30); stack-top(x) end" 30)
+      (stack-test3 "let x = newstack() in begin stack-push(x, 10); stack-push(x, 20); stack-push(x,30); stack-pop(x); stack-pop(x); stack-pop(x); empty-stack?(x) end" #t)
+      (stack-test4 "let x = newstack() in begin stack-push(x, 10); stack-pop(x); stack-push(x, 20); stack-push(x, 30); stack-pop(x); stack-top(x) end" 20)
+      (stack-test5 "let x = newstack() in begin stack-push(x, 10); stack-pop(x); stack-push(x, 20); stack-push(x, 30); stack-pop(x); stack-top(x); stack-push(x, 30); stack-size(x) end" 2)
+
 ;
 ;           ; ==================== Array comprehension test cases =========================;
 ;      (array-comp-simple-test "read-array([ -(2, 1) for i in newarray(4,2) ],1)" 1) 
