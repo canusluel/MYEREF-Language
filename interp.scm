@@ -12,7 +12,6 @@
   (provide value-of-program value-of instrument-let instrument-newref)
 
   ;;;;;;;;;;;;;;;; switches for instrument-let ;;;;;;;;;;;;;;;;
-
   (define instrument-let (make-parameter #f))
 
   ;; say (instrument-let #t) to turn instrumentation on.
@@ -34,7 +33,7 @@
   (define value-of
     (lambda (exp env)
       (cases expression exp
-
+        
         ;\commentbox{ (value-of (const-exp \n{}) \r) = \n{}}
         (const-exp (num) (num-val num))
 
@@ -129,7 +128,7 @@
         (read-arr-exp (exp1 exp2)
                       (let ((arr (expval->arr (value-of exp1 env)))
                             (index (expval->num (value-of exp2 env))))
-                        (read-arr-helper arr index)))
+                          (read-arr-helper arr index)))
 
         (print-arr-exp (exp1)
                        (let ((arr (expval->arr (value-of exp1 env))))
@@ -142,7 +141,7 @@
                       (let ((stack-size 1023)
                             (stack-init-value (num-val -1)))
                         (let ((created-stack (new-arr-helper stack-size stack-init-value)))
-                          (arr-val (array-value created-stack)))))
+                                     (arr-val (array-value created-stack)))))
         
         ; Performs push operation on given stack with given value
         ; We find the top of the stack by checking the first -1 value
@@ -174,7 +173,10 @@
         (print-stack-exp (exp1)
                          (let ((stack (expval->arr (value-of exp1 env))))
                            (print-arr-helper stack)))
-                        
+        
+        (array-comprehension-exp (exp1 exp2 exp3)
+                                 (comprehension-processor env exp1 exp2 (expval->arr (value-of exp3 env)) 0))
+                       
                              
                            
     
@@ -182,7 +184,17 @@
         )))
 
   ; ###### YOU CAN WRITE HELPER FUNCTIONS HERE
-
+  
+  (define (comprehension-processor env body sym arr counter)
+    (cases arrval arr
+      (array-value (elements)
+                   (if (< counter (length elements))
+                       (begin
+                         (extend-env sym (num-val counter) env)
+                         (setref! (list-ref elements counter) (value-of body env))
+                         (comprehension-processor env body sym (array-value elements) (+ counter 1)))
+                       (arr-val (array-value elements))))))
+  
   ; Creates an array with the created references by returned newref call.
   (define (new-arr-helper length value)
     (if (= length 0)
@@ -262,6 +274,8 @@
         (if (= -1 (expval->num (deref (car l))))
             #t
             #f)))
+          
+    
         
   
     ;; apply-procedure : Proc * ExpVal -> ExpVal
