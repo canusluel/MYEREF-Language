@@ -122,6 +122,10 @@
        ("print-stack" "(" expression ")")
        print-stack-exp)
 
+      (expression
+       ("[" expression "for" identifier "in" expression "]")
+       array-comprehension-exp)
+
       ))
 
   ;;;;;;;;;;;;;;;; sllgen boilerplate ;;;;;;;;;;;;;;;;
