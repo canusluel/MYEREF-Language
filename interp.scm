@@ -172,7 +172,7 @@
                             (bool-val (empty-helper stack))))
         (print-stack-exp (exp1)
                          (let ((stack (expval->arr (value-of exp1 env))))
-                           (print-arr-helper stack)))
+                           (print-stk-helper stack)))
         
         (array-comprehension-exp (exp1 exp2 exp3)
                                  (comprehension-processor env exp1 exp2 (expval->arr (value-of exp3 env)) 0))
@@ -215,7 +215,27 @@
   ; P.S. We returned 23 as a return value, since it is specified on the lecture slides.
   (define (print-arr-helper arr)
     (cases arrval arr
-      (array-value (elements) (print-each-element elements))))
+      (array-value (elements) (begin
+                                (display "[ ")
+                                (print-each-element elements)))))
+
+    (define (print-stk-helper stk)
+    (cases arrval stk
+      (array-value (elements) (begin
+                                (display "[ ")
+                                (print-each-element-stk elements)))))
+
+  ; Prints the each element in the given list.
+  ; P. S. Since we are storing the list of references,
+  ; we are taking list as an input.
+  (define (print-each-element-stk l)
+    (if (or (null? l) (= (expval->num (deref (car l))) -1))
+        ; Default value for ending, same as return 0 in the other programming languages.
+        (display "]")
+        (begin
+          (display (expval->num (deref (car l))))
+          (display " ")
+          (print-each-element-stk (cdr l)))))
 
   ; Prints the each element in the given list.
   ; P. S. Since we are storing the list of references,
@@ -223,9 +243,9 @@
   (define (print-each-element l)
     (if (null? l)
         ; Default value for ending, same as return 0 in the other programming languages.
-        (num-val 23)
+          (display "]")
         (begin
-          (display (deref (car l)))
+          (display (expval->num (deref (car l))))
           (display " ")
           (print-each-element (cdr l)))))
   
