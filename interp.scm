@@ -190,7 +190,7 @@
       (array-value (elements)
                    (if (< counter (length elements))
                        (begin
-                         (setref! (list-ref elements counter) (value-of body (extend-env sym (num-val counter) env)))
+                         (setref! (list-ref elements counter) (value-of body (extend-env sym (deref counter) env)))
                          (comprehension-processor env body sym (array-value elements) (+ counter 1)))
                        (arr-val (array-value elements))))))
   

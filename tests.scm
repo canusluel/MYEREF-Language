@@ -207,7 +207,7 @@ in begin
                                    read-array([-(i, 1) for i in x], 0)
                                  end" -1)
       
-;      (array-comp-proc-test "let x = newarray(4,3) in (read-array([proc(y) -(y, i) for i in x], 0) 3)" 0) 
+      (array-comp-proc-test "let x = newarray(4,3) in (read-array([proc(y) -(y, i) for i in x], 0) 3)" 0) 
 ;                             
 ; 
 ;
