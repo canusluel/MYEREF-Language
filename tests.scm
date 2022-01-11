@@ -198,15 +198,15 @@ in begin
 ;           ; ==================== Array comprehension test cases =========================;
       (array-comp-simple-test "read-array([ -(2, 1) for i in newarray(4,2) ],1)" 1) 
 
-;      (array-comp-simple-test-2 "let x = newarray(4, 2) in                               
-;                                 begin
-;                                   update-array(x, 0, 0);
-;                                   update-array(x, 1, 1);
-;                                   update-array(x, 2, 2);
-;                                   update-array(x, 3, 3);
-;                                   read-array([-(i, 1) for i in x], 0)
-;                                 end" -1)
-; 
+      (array-comp-simple-test-2 "let x = newarray(4, 2) in                               
+                                 begin
+                                   update-array(x, 0, 0);
+                                   update-array(x, 1, 1);
+                                   update-array(x, 2, 2);
+                                   update-array(x, 3, 3);
+                                   read-array([-(i, 1) for i in x], 0)
+                                 end" -1)
+      
 ;      (array-comp-proc-test "let x = newarray(4,3) in (read-array([proc(y) -(y, i) for i in x], 0) 3)" 0) 
 ;                             
 ; 
